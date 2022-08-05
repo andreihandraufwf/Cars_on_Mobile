@@ -1,13 +1,18 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Mobile_SearchFor_Cars" this:Mobile_SearchFor_Cars.in_carNames="Audi,A6;BMW,X6" this:Mobile_SearchFor_Cars.in_seatsNumber="5" this:Mobile_SearchFor_Cars.in_carTypes="Estate Car;Saloon;Sports Car / Coupe" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Mobile_SearchFor_Cars" this:Mobile_SearchFor_Cars.in_carNames="Audi,A6;BMW,X6" this:Mobile_SearchFor_Cars.in_seatsNumber="5" this:Mobile_SearchFor_Cars.in_carTypes="Estate Car;Saloon;Sports Car / Coupe" this:Mobile_SearchFor_Cars.in_fuelTypes="Diesel;Petrol" this:Mobile_SearchFor_Cars.in_powerNumber="131" this:Mobile_SearchFor_Cars.in_cubicCapacity="3000" this:Mobile_SearchFor_Cars.in_transmissionType="Manual Gearbox" this:Mobile_SearchFor_Cars.in_emissionSticker="4" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_carNames" Type="InArgument(x:String)" />
     <x:Property Name="in_seatsNumber" Type="InArgument(x:String)" />
     <x:Property Name="in_carTypes" Type="InArgument(x:String)" />
+    <x:Property Name="in_fuelTypes" Type="InArgument(x:String)" />
+    <x:Property Name="in_powerNumber" Type="InArgument(x:String)" />
+    <x:Property Name="in_cubicCapacity" Type="InArgument(x:String)" />
+    <x:Property Name="in_transmissionType" Type="InArgument(x:String)" />
+    <x:Property Name="in_emissionSticker" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1252.66666666667,2878.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1252.66666666667,3963.33333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Mobile_SearchFor_Cars_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -68,11 +73,11 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="This sequence applies filter to search for cars." DisplayName="Mobile_SearchFor_Cars" sap:VirtualizedContainerService.HintSize="552,2814" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="This sequence applies filter to search for cars." DisplayName="Mobile_SearchFor_Cars" sap:VirtualizedContainerService.HintSize="552,3898.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="id">
         <Variable.Default>
@@ -86,13 +91,13 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach 'mobile.de' Website" sap:VirtualizedContainerService.HintSize="510,2691.33333333333" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="d38897bff890cda057bc3554a6f75789" Selector="&lt;html app='msedge.exe' title='https://www.mobile.de/?lang=en' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Edge" DisplayName="Attach 'mobile.de' Website" sap:VirtualizedContainerService.HintSize="510,3776" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="d38897bff890cda057bc3554a6f75789" Selector="&lt;html app='msedge.exe' title='https://www.mobile.de/?lang=en' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Apply Filters" sap:VirtualizedContainerService.HintSize="476,2545.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Apply Filters" sap:VirtualizedContainerService.HintSize="476,3630" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -168,7 +173,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[Split(in_carNames, &quot;;&quot;).Count]" />
-                    <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="&#xD;&#xA;" ClickType="CLICK_SINGLE" DelayBefore="1000" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True">
+                    <ui:Click AlterIfDisabled="{x:Null}" DelayMS="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="&#xA;" ClickType="CLICK_SINGLE" DelayBefore="1000" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True">
                       <ui:Click.CursorPosition>
                         <ui:CursorPosition Position="Center">
                           <ui:CursorPosition.OffsetX>
@@ -323,7 +328,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
-            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" Activate="True" AlterIfDisabled="True" ClickBeforeTyping="True" DeselectAfter="True" DisplayName="Type Into 'SELECT  minSeats-s'" sap:VirtualizedContainerService.HintSize="434,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" SendWindowMessages="True" SimulateType="False" Text="[in_seatsNumber]">
+            <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" Activate="True" AlterIfDisabled="True" ClickBeforeTyping="True" DeselectAfter="True" DisplayName="Type desired number of seats" sap:VirtualizedContainerService.HintSize="434,134" sap2010:WorkflowViewState.IdRef="TypeInto_3" SendWindowMessages="True" SimulateType="False" Text="[in_seatsNumber]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="38ed2931-d76d-4a71-9cba-6fa72abc0bb4" InformativeScreenshot="c3c8c8d1bf46507cc02fcc7521981335" Selector="&lt;html app='msedge.exe' title='Car search on mobile.de – find your vehicle quick and easy' /&gt;&lt;webctrl id='minSeats-s' tag='SELECT' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -335,6 +340,117 @@
                 </ui:Target>
               </ui:TypeInto.Target>
             </ui:TypeInto>
+            <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each desired fuel type" sap:VirtualizedContainerService.HintSize="434,230.666666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[Split(in_fuelTypes, &quot;;&quot;)]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="fuel" />
+                  </ActivityAction.Argument>
+                  <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Fuel Type'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_10" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="58178d41-9fad-41e1-8e3f-008f86b7f451" InformativeScreenshot="4a81024618171e67c72df535328a4116" Selector="[String.Format(&quot;&lt;html app='msedge.exe' title='Car search on mobile.de – find your vehicle quick and easy' /&gt;&lt;webctrl parentid='form-dsp' class='checkbox' innertext='{0}' /&gt;&quot;, fuel)]">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:Click.Target>
+                  </ui:Click>
+                </ActivityAction>
+              </ui:ForEach.Body>
+            </ui:ForEach>
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'Power'" sap:VirtualizedContainerService.HintSize="434,134" sap2010:WorkflowViewState.IdRef="TypeInto_4" SendWindowMessages="True" Text="[in_powerNumber]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c2418690-7e86-4b08-b3da-891f09204ce0" InformativeScreenshot="f257240273ca68812a20c91d6128ef2f" Selector="&lt;html app='msedge.exe' title='Car search on mobile.de – find your vehicle quick and easy' /&gt;&lt;webctrl id='minPowerAsArray' tag='INPUT' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'Cubic capacity'" sap:VirtualizedContainerService.HintSize="434,134" sap2010:WorkflowViewState.IdRef="TypeInto_5" SendWindowMessages="True" Text="[in_cubicCapacity]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5ec80222-5ef3-468a-b9d8-1441376d3659" InformativeScreenshot="0e2e1c1a9d2dda85c3b44635a87f1c27" Selector="&lt;html app='msedge.exe' title='Car search on mobile.de – find your vehicle quick and easy' /&gt;&lt;webctrl id='maxCubicCapacity' tag='INPUT' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Transmission Type'" sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Click_11" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f390c6b8-9155-4dbb-b973-c82aa6612316" InformativeScreenshot="ffab3b23385fd4f81e72a418965a2071" Selector="[String.Format(&quot;&lt;html app='msedge.exe' title='Car search on mobile.de – find your vehicle quick and easy' /&gt;&lt;webctrl aaname='{0}' parentid='form-dsp' tag='SPAN' innertext='{0}' /&gt;&quot;, in_transmissionType)]">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'SELECT  emissionsSticke...'" sap:VirtualizedContainerService.HintSize="434,134" sap2010:WorkflowViewState.IdRef="TypeInto_6" SendWindowMessages="True" Text="[in_emissionSticker]">
+              <ui:TypeInto.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0b77b9f2-6446-4d9e-9e60-d5b17480d936" InformativeScreenshot="bd28ee5e1111cbd82622ebfe2bc824bf" Selector="&lt;html app='msedge.exe' title='Car search on mobile.de – find your vehicle quick and easy' /&gt;&lt;webctrl id='emissionsSticker-ds' tag='SELECT' aaname='Emissions Sticker' name='emissionsSticker' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:TypeInto.Target>
+            </ui:TypeInto>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Show Results'" sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Click_12" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="68f3d88b-e019-4167-9c4e-706385a10e73" InformativeScreenshot="3442bd612590124cb3c1bf6b2a73f0fd" Selector="&lt;html app='msedge.exe' title='Car search on mobile.de – find your vehicle quick and easy' /&gt;&lt;webctrl tag='BUTTON' type='submit' aaname='*results' innertext='*results' idx='1' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>
