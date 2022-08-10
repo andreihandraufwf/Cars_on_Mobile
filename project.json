@@ -3,10 +3,10 @@
   "description": "This process filters all cars from 'mobile.de' and outputs in a workbook all items which fit certain criteria. At the end of the process it emails the workbook to specified contact.",
   "main": "Main.xaml",
   "dependencies": {
-    "CheckProcessStatus.Activities": "[1.0.1]",
     "UiPath.Excel.Activities": "[2.12.3]",
     "UiPath.Mail.Activities": "[1.15.2]",
     "UiPath.System.Activities": "[22.4.4]",
+    "UiPath.Testing.Activities": "[22.4.3]",
     "UiPath.UIAutomation.Activities": "[22.4.7]"
   },
   "webServices": [],
@@ -45,7 +45,31 @@
         "editingStatus": "InProgress",
         "testCaseId": "44f01ef5-a788-406a-b558-715fa1a4df74",
         "testCaseType": "TestCase",
-        "fileName": "ApplicationLayer\\TestCase_Scrape_Cars.xaml"
+        "fileName": "Tests\\TestCase_Scrape_Cars.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "bc485a87-df2d-4a0e-884a-0a0a9e9c69d4",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\TestCase_Read_Config.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "86135f65-888a-4943-b2f1-3984d7f46773",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\TestCase_Mobile_SearchFor_Cars.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "0f251706-2d44-4fde-bb4f-e7297b83a108",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\TestCase_Filter_Cars.xaml"
+      },
+      {
+        "editingStatus": "InProgress",
+        "testCaseId": "5932a85d-bf28-4130-bc35-b3bcf6e50da0",
+        "testCaseType": "TestCase",
+        "fileName": "Tests\\TestCase_Write_CarWorkbook.xaml"
       }
     ],
     "modernBehavior": false

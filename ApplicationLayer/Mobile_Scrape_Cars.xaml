@@ -1,12 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Mobile_Scrape_Cars" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Mobile_Scrape_Cars" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_dt_scrapedCars" Type="OutArgument(sd:DataTable)" />
-    <x:Property Name="out_dt_goodscrapedCars" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="in_FilterURL" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1252.66666666667,2498.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1254,848</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Mobile_Scrape_Cars_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -88,26 +88,21 @@
       <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="This sequence scrapes all cars from website after all filters have been applied in previous activity." DisplayName="Mobile_Scrape_Cars" sap:VirtualizedContainerService.HintSize="669.333333333333,2434" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="Year" />
-      <Variable x:TypeArguments="x:String" Name="Km" />
-      <Variable x:TypeArguments="x:String" Name="actualKm" />
-      <Variable x:TypeArguments="s:String[]" Default="[{&quot;sponsored&quot;, &quot;new&quot;}]" Name="replaceString" />
-    </Sequence.Variables>
+  <Sequence sap2010:Annotation.AnnotationText="This sequence scrapes all cars from website after all filters have been applied in previous activity." DisplayName="Mobile_Scrape_Cars" sap:VirtualizedContainerService.HintSize="476,783.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" DisplayName="Use Browser Edge: Audi BMW A6 X6 | Buy a Car at mobile.de" sap:VirtualizedContainerService.HintSize="627.333333333333,376.666666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="7d39d639-5f2b-4190-a5d0-ec07c0105933" Timeout="60" Version="V2">
+    <ui:LogMessage DisplayName="Log Message to indicate beginning of workflow" sap:VirtualizedContainerService.HintSize="434,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Opening Mobile_Scrape_Cars&quot;]" />
+    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" DisplayName="Use Filtered Cars Page on 'mobile.de'" sap:VirtualizedContainerService.HintSize="434,376.666666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="7d39d639-5f2b-4190-a5d0-ec07c0105933" Timeout="60" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <uix:NExtractData ContinueOnError="True" DataTable="[out_dt_scrapedCars]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Name'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='URL'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='Description'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='Price'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataNextLink' /&gt;&#xD;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='text' name2='Column1' attr2='href'&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='text'&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='text'&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,158.666666666667" sap2010:WorkflowViewState.IdRef="NExtractData_1" MaximumResults="0" ScopeIdentifier="7d39d639-5f2b-4190-a5d0-ec07c0105933" Version="V1">
+          <uix:NExtractData ContinueOnError="True" DataTable="[out_dt_scrapedCars]" DisplayName="Extract Cars in Data Table" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Name'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='URL'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='Description'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column3' Name='Price'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataNextLink' /&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='text' name2='Column1' attr2='href'&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='text'&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='text'&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,158.666666666667" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="Rows" MaximumResults="0" ScopeIdentifier="7d39d639-5f2b-4190-a5d0-ec07c0105933" Version="V1">
             <uix:NExtractData.NextLink>
               <uix:TargetAnchorable BrowserURL="https://suchen.mobile.de/fahrzeuge/search.html?c=EstateCar&amp;c=Limousine&amp;c=SportsCar&amp;cc=%3A3000&amp;ems=EMISSIONSSTICKER_GREEN&amp;ft=DIESEL&amp;ft=PETROL&amp;isSearchRequest=true&amp;ms=1900%3B10%3B%3B%3B&amp;ms=3500%3B60%3B%3B%3B&amp;pw=96%3A&amp;ref=dsp&amp;s=Car&amp;sc=5%3A&amp;tr=MANUAL_GEAR&amp;vc=Car" DesignTimeRectangle="1266, 574, 214, 66" FriendlyName="'Further offers'" FullSelectorArgument="&lt;webctrl id='page-forward' tag='SPAN' aaname='Further offers' innertext='Further offers' /&gt;" FuzzySelectorArgument="&lt;webctrl id='page-forward' tag='SPAN' aaname='Further offers' innertext='Further offers' type='' class='btn btn--primary btn--l next-resultitems-page' check:text='Further offers' /&gt;" Guid="ba3582d2-0af0-4055-bf0a-3a69bc8787b8" ImageBase64="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" InformativeScreenshot="378db7bbb8c68ec41d8b51982b38dca3.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Audi BMW A6 X6 | Buy a Car at mobile.de' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive" />
             </uix:NExtractData.NextLink>
@@ -118,128 +113,9 @@
         </ActivityAction>
       </uix:NApplicationCard.Body>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-11, -11, 1942, 1042" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAVJJREFUWEftl9GNgzAQRF2CS6AESqAESuDncvkjHZxLoAPTASVQgkugBErY2zEsMYYfBFakiCeNkqxiZlhDwqoQqpSmh/pjDSzyug7HsqxstltDP6pmjYvx9QGEkfWabSe8eWwsSscUgtue7Z65KB3ohFb0q+yusSgtRrGJ25iGSsuAAPvGosTcAQ4HMMYsGseRrLVUFAVlWeZf+77333POUVmWvp7nOTVN4+sxhwPgzhVVVbX6LOq6jrTWm/peiFMBIJwhFNcRAB0Ja+hEzOkOCDi41BFoGAZfx1aFa2JOBWjbdq7Sajuw9wKukXBNzKkAcsGBMEDYmTvAHeAO8H0B5KcXCgPUdb3U8V7A/0K4JuZwgKu5AyDAewraU1ocApiNaai0WL5neB783GAyzYls9NoYi9IRzYcI8anhVKAnz4kP1bLe09J14BnNsPRsxyj1D8PKR4rCi7qlAAAAAElFTkSuQmCC" InformativeScreenshot="42024339d88a1e253ce773d9ac5156ce.png" Selector="&lt;html app='msedge.exe' title='Audi BMW A6 X6 | Buy a Car at mobile.de' /&gt;" Url="https://suchen.mobile.de/fahrzeuge/search.html?c=EstateCar&amp;c=Limousine&amp;c=SportsCar&amp;cc=%3A3000&amp;ems=EMISSIONSSTICKER_GREEN&amp;ft=DIESEL&amp;ft=PETROL&amp;isSearchRequest=true&amp;ms=1900%3B10%3B%3B%3B&amp;ms=3500%3B60%3B%3B%3B&amp;pw=96%3A&amp;ref=dsp&amp;s=Car&amp;sc=5%3A&amp;tr=MANUAL_GEAR&amp;vc=Car" />
+        <uix:TargetApp Area="-11, -11, 1942, 1042" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAVJJREFUWEftl9GNgzAQRF2CS6AESqAESuDncvkjHZxLoAPTASVQgkugBErY2zEsMYYfBFakiCeNkqxiZlhDwqoQqpSmh/pjDSzyug7HsqxstltDP6pmjYvx9QGEkfWabSe8eWwsSscUgtue7Z65KB3ohFb0q+yusSgtRrGJ25iGSsuAAPvGosTcAQ4HMMYsGseRrLVUFAVlWeZf+77333POUVmWvp7nOTVN4+sxhwPgzhVVVbX6LOq6jrTWm/peiFMBIJwhFNcRAB0Ja+hEzOkOCDi41BFoGAZfx1aFa2JOBWjbdq7Sajuw9wKukXBNzKkAcsGBMEDYmTvAHeAO8H0B5KcXCgPUdb3U8V7A/0K4JuZwgKu5AyDAewraU1ocApiNaai0WL5neB783GAyzYls9NoYi9IRzYcI8anhVKAnz4kP1bLe09J14BnNsPRsxyj1D8PKR4rCi7qlAAAAAElFTkSuQmCC" InformativeScreenshot="42024339d88a1e253ce773d9ac5156ce.png" Selector="&lt;html app='msedge.exe' title='Audi BMW A6 X6 | Buy a Car at mobile.de' /&gt;" Url="[in_FilterURL]" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="627.333333333333,229.333333333333" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,150.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_5">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:BuildDataTable DataTable="[out_dt_scrapedCars]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Name&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;URL&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Description&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Price&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Name&gt;twst&lt;/Name&gt;&#xD;&#xA;    &lt;URL&gt;Test&lt;/URL&gt;&#xD;&#xA;    &lt;Description&gt;FR 06/2018, 84.773 km&lt;/Description&gt;&#xD;&#xA;    &lt;Price&gt;3453&lt;/Price&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="627.333333333333,446.666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_3">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,368" sap2010:WorkflowViewState.IdRef="Sequence_6">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeCode ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Here the extracted data table goes through some content trims that were not possible during the scraping process due to the nature of the website selectors so that actual data table that will be sent out contains only the needed information to be sorted and sent." Code="' first two additional columns must be added, one for year&#xD;&#xA;'and one for car's mileage, which will be retrieved from&#xD;&#xA;'the description column&#xD;&#xA;&#xD;&#xA;io_dt_scrapedCars.Columns.Add(&quot;Year&quot;, GetType(String))&#xD;&#xA;io_dt_scrapedCars.Columns.Add(&quot;KM&quot;, GetType(String))&#xD;&#xA;'Now the necessarry data will be retrieved from the description column&#xD;&#xA;'and put into the columns created above&#xD;&#xA;&#xD;&#xA;For Each currentRow As DataRow In io_dt_scrapedCars.AsEnumerable&#xD;&#xA;&#x9;currentRow.ItemArray = {currentRow(&quot;Name&quot;).ToString, currentRow(&quot;URL&quot;).toString,currentRow(&quot;Description&quot;).toString, currentRow(&quot;Price&quot;).toString, Split(Split(currentRow(&quot;Description&quot;).ToString,&quot;, &quot;)(0).toString, &quot;/&quot;)(1).ToString, Split(Split(currentRow(&quot;Description&quot;).ToString,&quot;, &quot;)(1).toString, &quot; &quot;)(0).ToString}&#xD;&#xA;Next&#xD;&#xA;&#xD;&#xA;io_dt_scrapedCars.Columns.Remove(&quot;Description&quot;)" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,276" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
-            <ui:InvokeCode.Arguments>
-              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_scrapedCars">[out_dt_scrapedCars]</InOutArgument>
-            </ui:InvokeCode.Arguments>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:InvokeCode>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="627.333333333333,1036" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="590.666666666667,957.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <Sequence sap2010:Annotation.AnnotationText="Here the extracted data table goes through some content trims that were not possible during the scraping process due to the nature of the website selectors so that actual data table that will be sent out contains only the needed information to be sorted and sent." DisplayName="Get Only the data that is needed" sap:VirtualizedContainerService.HintSize="548.666666666667,865.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[out_dt_scrapedCars]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="506.666666666667,711.333333333333" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-              <ui:ForEachRow.Body>
-                <ActivityAction x:TypeArguments="sd:DataRow">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="472.666666666667,596" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Year = Split(Row(2).ToString, &quot;, &quot;)(0)&#xA;Year = Split(Year, &quot;/&quot;)(1)" DisplayName="Get year from data row" sap:VirtualizedContainerService.HintSize="430.666666666667,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
-                      <ui:InvokeCode.Arguments>
-                        <InArgument x:TypeArguments="sd:DataRow" x:Key="Row">[Row]</InArgument>
-                        <OutArgument x:TypeArguments="x:String" x:Key="Year">[Year]</OutArgument>
-                        <OutArgument x:TypeArguments="x:String" x:Key="Km">[Year]</OutArgument>
-                      </ui:InvokeCode.Arguments>
-                    </ui:InvokeCode>
-                    <ui:MultipleAssign DisplayName="Get year from data row" sap:VirtualizedContainerService.HintSize="430.666666666667,130" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
-                      <ui:MultipleAssign.AssignOperations>
-                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
-                            <ui:AssignOperation.To>
-                              <OutArgument x:TypeArguments="x:String">[Year]</OutArgument>
-                            </ui:AssignOperation.To>
-                            <ui:AssignOperation.Value>
-                              <InArgument x:TypeArguments="x:String">[Split(Row(2).ToString,", ")(0)]</InArgument>
-                            </ui:AssignOperation.Value>
-                          </ui:AssignOperation>
-                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
-                            <ui:AssignOperation.To>
-                              <OutArgument x:TypeArguments="x:String">[Year]</OutArgument>
-                            </ui:AssignOperation.To>
-                            <ui:AssignOperation.Value>
-                              <InArgument x:TypeArguments="x:String">[Split(Year, "/")(1)]</InArgument>
-                            </ui:AssignOperation.Value>
-                          </ui:AssignOperation>
-                        </scg:List>
-                      </ui:MultipleAssign.AssignOperations>
-                    </ui:MultipleAssign>
-                    <ui:MultipleAssign DisplayName="Get Km from Data row" sap:VirtualizedContainerService.HintSize="430.666666666667,130" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
-                      <ui:MultipleAssign.AssignOperations>
-                        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
-                            <ui:AssignOperation.To>
-                              <OutArgument x:TypeArguments="x:String">[Km]</OutArgument>
-                            </ui:AssignOperation.To>
-                            <ui:AssignOperation.Value>
-                              <InArgument x:TypeArguments="x:String">[Split(Row(2).ToString, ", ")(1)]</InArgument>
-                            </ui:AssignOperation.Value>
-                          </ui:AssignOperation>
-                          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
-                            <ui:AssignOperation.To>
-                              <OutArgument x:TypeArguments="x:String">[Km]</OutArgument>
-                            </ui:AssignOperation.To>
-                            <ui:AssignOperation.Value>
-                              <InArgument x:TypeArguments="x:String">[Split(Km, " ")(0)]</InArgument>
-                            </ui:AssignOperation.Value>
-                          </ui:AssignOperation>
-                        </scg:List>
-                      </ui:MultipleAssign.AssignOperations>
-                    </ui:MultipleAssign>
-                  </Sequence>
-                </ActivityAction>
-              </ui:ForEachRow.Body>
-            </ui:ForEachRow>
-          </Sequence>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="627.333333333333,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[out_dt_scrapedCars.RowCount.ToString]" />
+    <ui:LogMessage DisplayName="Log Message to indicate end of workflow" sap:VirtualizedContainerService.HintSize="434,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Cars scraped to workflow. Total number of cars is: &quot;+ out_dt_scrapedCars.RowCount.ToString]" />
   </Sequence>
 </Activity>
